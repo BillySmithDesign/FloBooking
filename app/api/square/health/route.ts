@@ -1,0 +1,2 @@
+import {NextResponse} from 'next/server';import {locationId,squareFetch} from '../../../../lib/square';
+export async function GET(){try{const d=await squareFetch(`/v2/locations/${locationId()}`);return NextResponse.json({ok:true,environment:process.env.SQUARE_ENV||'sandbox',location:{id:d.location?.id,name:d.location?.name}})}catch(e:any){return NextResponse.json({ok:false,error:e.message},{status:500})}}
